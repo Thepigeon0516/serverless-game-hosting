@@ -1,0 +1,19 @@
+version: '3'
+services:
+  terraria:
+    image: beardedio/terraria:tshock-latest
+    container_name: terraria_server
+    restart: unless-stopped
+    ports:
+      - "7777:7777"
+    environment:
+      - WORLD_FILENAME=MyDockerWorld.wld
+      - AUTOCREATE=1
+      - DIFFICULTY=0
+      - MAX_PLAYERS=8
+      - MOTD=Welcome to my AWS Server!
+    volumes:
+      - ./config:/config
+      - ./worlds:/root/.local/share/Terraria/Worlds
+    tty: true
+    stdin_open: true
